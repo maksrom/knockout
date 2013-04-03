@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Моя сторінка</title>
+    <script src="../knockout_toDoList/jquery.js" type="text/javascript"></script>
+    <script src="knockout.js" type="text/javascript" ></script>
+    <script src="main.js" type="text/javascript"></script>
+    <link type="text/css" href="main.css" rel= "stylesheet">
+</head>
+<body>
+
+
+<button class="button addNewButton" data-bind="click: $root.addFruit">Add a new fruit</button>
+<hr />
+<table class="fruitGrid">
+    <thead>
+    <tr>
+        <th class="headRow headColumn">
+            Fruit Name
+        </th>
+        <th class="headRow headColumn">
+            Fruit Colour
+        </th>
+        <th class="headRow tools">
+        </th>
+    </tr>
+    </thead>
+    <tbody data-bind="foreach: fruits">
+    <tr class="row">
+        <td class="rowItem">
+            <input type="text" class="edit" data-bind="value: name.editValue, visible: $root.isItemEditing($data)"  />
+            <label class="read" data-bind="text: name, visible: !$root.isItemEditing($data)" />
+        </td>
+        <td class="rowItem">
+            <select class="edit" data-bind="options: $root.availableColours, value: colour.editValue, visible: $root.isItemEditing($data)"></select>
+            <label class="read" data-bind="text: colour, visible: !$root.isItemEditing($data)" />
+        </td>
+        <td class="tools">
+            <a class="button toolButton" href="#" data-bind="click: $root.editFruit.bind($root), visible: !$root.isItemEditing($data)">Edit</a>
+            <a class="button toolButton" href="#" data-bind="click: $root.removeFruit.bind($root), visible: !$root.isItemEditing($data)">Remove</a>
+            <a class="button toolButton" href="#" data-bind="click: $root.applyFruit.bind($root), visible: $root.isItemEditing($data)">Apply</a>
+            <a class="button toolButton" href="#" data-bind="click: $root.cancelEdit.bind($root), visible: $root.isItemEditing($data)">Cancel</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+</html>

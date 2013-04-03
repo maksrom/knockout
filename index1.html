@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="main.css">
+    <script src="../knockout_toDoList/jquery.js"></script>
+    <script src="knockout.js"></script>
+    <script>
+        $(function(){
+            function TodoItem(name){
+                var self = this;
+                self.name = name;
+                return name;
+            }
+            var TodoViewModel = function (){
+                var self = this;
+
+                self.todos = ko.observableArray([]);
+                self.addNewTodo = function(){
+                    if (todoName){self.todos.push(new TodoItem(document.getElementById('todoName').value));}
+                };
+
+                return self;
+            };
+            ko.applyBindings(new TodoViewModel());
+
+        });
+    </script>
+</head>
+<body>
+
+<form data-bind="submit: addNewTodo">
+
+    <div>
+        <label>Name</label>
+        <input id="todoName" >
+    </div>
+    <div>
+        <label>Description</label>
+        <input >
+    </div>
+    <div>
+        <label></label>
+        <input type="submit" value="Add">
+    </div>
+    <ul data-bind="foreach: todos">
+        <li>
+            <span data-bind="text: name">Del</span>
+
+        </li>
+    </ul>
+</form>
+
+</body>
+</html>
